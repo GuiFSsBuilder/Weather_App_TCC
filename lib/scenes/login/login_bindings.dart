@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:test_flutter_template_builders/utils/interfaces/interfaces.dart';
+import 'package:weather_app_tcc/utils/interfaces/interfaces.dart';
 import 'login_controller.dart';
 
 class LoginBindings implements Bindings {

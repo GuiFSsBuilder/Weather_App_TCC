@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:test_flutter_template_builders/initial_bindings.dart';
+import 'package:weather_app_tcc/initial_bindings.dart';
 
 import 'navigation/navigation.dart';
 import 'theme/theme.dart';

@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:test_flutter_template_builders/api/api.dart';
-import 'package:test_flutter_template_builders/utils/interfaces/interfaces.dart';
+import 'package:weather_app_tcc/api/api.dart';
+import 'package:weather_app_tcc/utils/interfaces/interfaces.dart';
 
 class InitialBindings implements Bindings {
   @override

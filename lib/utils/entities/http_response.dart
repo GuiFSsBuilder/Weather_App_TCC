@@ -1,5 +1,7 @@
+import 'package:weather_app_tcc/utils/types/types.dart';
+
 class HttpResponse {
-  final Map<String, dynamic>? body;
+  final Json? body;
   final int statusCode;
 
   const HttpResponse({

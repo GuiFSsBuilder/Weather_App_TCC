@@ -1,5 +1,5 @@
-import 'package:test_flutter_template_builders/utils/entities/entities.dart';
-import 'package:test_flutter_template_builders/utils/enums/enums.dart';
+import 'package:weather_app_tcc/utils/entities/entities.dart';
+import 'package:weather_app_tcc/utils/enums/enums.dart';
 
 String getHttpMethodName(HttpMethod method) {
   switch (method) {

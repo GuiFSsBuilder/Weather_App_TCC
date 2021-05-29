@@ -1,6 +1,6 @@
 {
-    "name": "test_flutter_template_builders",
-    "short_name": "test_flutter_template_builders",
+    "name": "weather_app_tcc",
+    "short_name": "weather_app_tcc",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

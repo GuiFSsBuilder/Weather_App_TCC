@@ -1,9 +1,10 @@
 import 'package:dio/dio.dart';
-import 'package:test_flutter_template_builders/utils/entities/http_error.dart';
-import 'package:test_flutter_template_builders/utils/enums/http.dart';
-import 'package:test_flutter_template_builders/utils/entities/http_response.dart';
-import 'package:test_flutter_template_builders/utils/helpers/helpers.dart';
-import 'package:test_flutter_template_builders/utils/interfaces/interfaces.dart';
+import 'package:weather_app_tcc/utils/entities/http_error.dart';
+import 'package:weather_app_tcc/utils/enums/http.dart';
+import 'package:weather_app_tcc/utils/entities/http_response.dart';
+import 'package:weather_app_tcc/utils/helpers/helpers.dart';
+import 'package:weather_app_tcc/utils/interfaces/interfaces.dart';
+import 'package:weather_app_tcc/utils/types/types.dart';
 
 class HttpClient implements IHttpClient {
   final Dio _dio = Dio(BaseOptions(
@@ -19,9 +20,9 @@ class HttpClient implements IHttpClient {
   Future<HttpResponse> request({
     required String url,
     required HttpMethod method,
-    Map<String, dynamic>? data,
-    Map<String, String>? params,
-    Map<String, String>? headers,
+    Json? data,
+    Json<String>? params,
+    Json<String>? headers,
   }) async {
     try {
       final response = await _dio.request(
@@ -35,7 +36,7 @@ class HttpClient implements IHttpClient {
       );
       return handleResponse(HttpResponse(
         statusCode: response.statusCode ?? 400,
-        body: response.data as Map<String, dynamic>,
+        body: response.data as Json,
       ));
     } catch (e) {
       throw HttpError(

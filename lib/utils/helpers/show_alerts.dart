@@ -1,7 +1,7 @@
 import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:test_flutter_template_builders/utils/enums/enums.dart';
+import 'package:weather_app_tcc/utils/enums/enums.dart';
 
 void showFlushbar({
   required String title,

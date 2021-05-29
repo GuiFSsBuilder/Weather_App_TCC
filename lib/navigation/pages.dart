@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:test_flutter_template_builders/scenes/login/login_bindings.dart';
-import 'package:test_flutter_template_builders/scenes/scenes.dart';
+import 'package:weather_app_tcc/scenes/login/login_bindings.dart';
+import 'package:weather_app_tcc/scenes/scenes.dart';
 
 import 'routes.dart';
 

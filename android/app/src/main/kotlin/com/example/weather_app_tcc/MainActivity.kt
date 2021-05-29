@@ -1,4 +1,4 @@
-package com.example.test_flutter_template_builders
+package com.example.weather_app_tcc
 
 import io.flutter.embedding.android.FlutterActivity
 
