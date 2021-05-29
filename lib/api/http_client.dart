@@ -8,11 +8,11 @@ import 'package:weather_app_tcc/utils/types/types.dart';
 
 class HttpClient implements IHttpClient {
   final Dio _dio = Dio(BaseOptions(
-    baseUrl: Env.apiBasePath,
+    baseUrl: Env.weatherApiPath,
     connectTimeout: 5000,
     receiveTimeout: 3000,
-    headers: {
-      'client_id': Env.clientId,
+    queryParameters: {
+      'appid': Env.weatherApiAppId,
     },
   ));
 

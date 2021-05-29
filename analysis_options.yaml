@@ -5,3 +5,9 @@ linter:
     sort_pub_dependencies: false
     constant_identifier_names: false
     use_setters_to_change_properties: false
+    non_constant_identifier_names: false
+
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
