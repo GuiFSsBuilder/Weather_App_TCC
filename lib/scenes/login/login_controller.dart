@@ -1,21 +1,25 @@
-import 'package:get/get.dart';
-import 'package:weather_app_tcc/utils/enums/enums.dart';
+import 'package:mobx/mobx.dart';
 import 'package:weather_app_tcc/utils/interfaces/interfaces.dart';
+part 'login_controller.g.dart';
 
-class LoginController extends GetxController {
+class LoginController = _LoginControllerBase with _$LoginController;
+
+abstract class _LoginControllerBase with Store {
   final IHttpClient _httpClient;
-  final _name = ''.obs;
 
-  LoginController(this._httpClient);
+  @observable
+  String name = 'initial';
 
-  String get name => _name.value;
+  _LoginControllerBase(this._httpClient);
 
-  set name(String value) => _name.value = value;
+  @action
+  void setName(String value) => name = value;
 
   Future<void> login() async {
-    await _httpClient.request(
-      url: '/any',
-      method: HttpMethod.get,
-    );
+    name = 'Guilherme';
+    // await _httpClient.request(
+    //   url: '/any',
+    //   method: HttpMethod.get,
+    // );
   }
 }

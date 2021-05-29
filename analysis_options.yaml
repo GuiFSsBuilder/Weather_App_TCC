@@ -4,3 +4,4 @@ linter:
   rules:
     sort_pub_dependencies: false
     constant_identifier_names: false
+    use_setters_to_change_properties: false

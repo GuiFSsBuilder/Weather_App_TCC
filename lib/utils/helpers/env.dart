@@ -5,7 +5,8 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 class Env {
   static String type = env['ENV'] ?? '';
   static String clientId = env['CLIENT_ID'] ?? '';
-  static String apiBasePath = env['API_BASE_PATH'] ?? '';
+  static String weatherApiPath = env['WEATHER_API_PATH'] ?? '';
+  static String weatherApiAppId = env['WEATHER_API_APP_ID'] ?? '';
 
   static String getEnvFileName() {
     const envArg = String.fromEnvironment("ENV");

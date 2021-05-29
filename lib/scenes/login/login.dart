@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get/get.dart';
 import 'login_controller.dart';
 
@@ -7,7 +8,9 @@ class Login extends GetView<LoginController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Obx(() => Text('Name: ${controller.name}')),
+        title: Observer(builder: (_) {
+          return Text('Name: ${controller.name}');
+        }),
         actions: [
           IconButton(
             icon: const Icon(Icons.login),
