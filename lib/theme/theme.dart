@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-ThemeData darkTheme() {
-  const primaryColor = Color(0xffFBCA00);
+ThemeData lightTheme() {
+  const primaryColor = Color(0xff54BAF3);
   const secondaryColor = Color(0xff2F2F2F);
   const backgroundColor = Color(0xff171717);
   const disabledColor = Color(0xffACACAC);
@@ -15,17 +15,18 @@ ThemeData darkTheme() {
     color: textColor,
   );
   const appBarTheme = AppBarTheme(
-    backgroundColor: primaryColor,
+    backgroundColor: Colors.transparent,
   );
+  const inputBorderRadius = BorderRadius.all(Radius.circular(5));
   const inputDecorationTheme = InputDecorationTheme(
     labelStyle: TextStyle(color: textColor),
     hintStyle: TextStyle(color: disabledColor),
     enabledBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(3.5)),
-      borderSide: BorderSide(color: disabledColor),
+      borderRadius: inputBorderRadius,
+      borderSide: BorderSide(color: Colors.white),
     ),
     focusedBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(3.5)),
+      borderRadius: inputBorderRadius,
       borderSide: BorderSide(color: primaryColor),
     ),
     focusColor: primaryColor,
@@ -45,7 +46,7 @@ ThemeData darkTheme() {
     style: ElevatedButton.styleFrom(primary: primaryColor),
   );
 
-  final baseTheme = ThemeData.dark();
+  final baseTheme = ThemeData.light();
 
   return baseTheme.copyWith(
     primaryColor: primaryColor,

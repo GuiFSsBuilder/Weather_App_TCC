@@ -9,8 +9,8 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Flutter Template',
-      theme: darkTheme(),
+      title: 'Weather App',
+      theme: lightTheme(),
       initialRoute: Routes.LOGIN,
       getPages: getPages(),
       initialBinding: InitialBindings(),
