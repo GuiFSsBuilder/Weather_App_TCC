@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-const _assetName = 'logo.svg';
+const _assetName = 'assets/svgs/logo.svg';
 
 class Logo extends StatelessWidget {
   final double width;
   final double height;
 
   const Logo({
-    this.width = 100,
-    this.height = 86,
+    this.width = 82,
+    this.height = 49,
   });
 
   @override

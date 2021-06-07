@@ -1,0 +1,69 @@
+import 'package:flutter/material.dart';
+// ignore: import_of_legacy_library_into_null_safe
+import 'package:flutter_icons/flutter_icons.dart';
+import 'package:get/get.dart';
+import 'package:weather_app_tcc/assets/svgs/svgs.dart';
+
+class SceneWrapper extends StatelessWidget {
+  final Widget? child;
+  final bool showGoBack;
+  final bool showLogo;
+  final void Function()? onPressSettings;
+
+  const SceneWrapper({
+    this.child,
+    this.showGoBack = false,
+    this.showLogo = true,
+    this.onPressSettings,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    List<Widget> actions = [];
+    if (onPressSettings != null) {
+      actions = [
+        IconButton(
+          onPressed: onPressSettings,
+          icon: const Icon(Entypo.dots_three_horizontal),
+        ),
+        const SizedBox(width: 20),
+      ];
+    }
+    return Scaffold(
+      appBar: AppBar(
+        title: showLogo ? const Logo() : null,
+        centerTitle: true,
+        leading: showGoBack
+            ? IconButton(
+                onPressed: Get.back,
+                icon: const Icon(AntDesign.arrowleft),
+              )
+            : null,
+        actions: actions,
+        titleSpacing: 0,
+        automaticallyImplyLeading: false,
+      ),
+      backgroundColor: Colors.pink,
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment(0, -0.1),
+            end: Alignment(0, 0.8),
+            colors: [
+              Color(0xff62C4FB),
+              Color(0xffFFFFFF),
+            ],
+          ),
+        ),
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25),
+            child: child,
+          ),
+        ),
+      ),
+    );
+  }
+}
