@@ -48,19 +48,12 @@ class SceneWrapper extends StatelessWidget {
         width: double.infinity,
         height: double.infinity,
         decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment(0, -0.1),
-            end: Alignment(0, 0.8),
-            colors: [
-              Color(0xff62C4FB),
-              Color(0xffFFFFFF),
-            ],
-          ),
+          color: Color(0xff62C4FB),
         ),
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25),
-            child: child,
+            child: SingleChildScrollView(child: child),
           ),
         ),
       ),

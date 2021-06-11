@@ -37,14 +37,32 @@ ThemeData lightTheme() {
   const iconTheme = IconThemeData(color: Colors.white);
   const accentIconTheme = IconThemeData(color: Color(0xff979797));
   final textButtonTheme = TextButtonThemeData(
-    style: ButtonStyle(
-      overlayColor: MaterialStateProperty.resolveWith(
-        (states) => primaryColor.withOpacity(0.2),
+    style: TextButton.styleFrom(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3)),
+      primary: Colors.white,
+      textStyle: const TextStyle(
+        fontSize: 14,
+        fontWeight: FontWeight.bold,
       ),
     ),
   );
   final elevatedButtonTheme = ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(primary: primaryColor),
+  );
+  final outlinedButtonTheme = OutlinedButtonThemeData(
+    style: OutlinedButton.styleFrom(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(3),
+      ),
+      primary: primaryColor,
+      minimumSize: const Size.fromHeight(54),
+      backgroundColor: Colors.white,
+      elevation: 0,
+      textStyle: const TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
   );
 
   final baseTheme = ThemeData.light();
@@ -63,5 +81,6 @@ ThemeData lightTheme() {
     accentIconTheme: accentIconTheme,
     iconTheme: iconTheme,
     textButtonTheme: textButtonTheme,
+    outlinedButtonTheme: outlinedButtonTheme,
   );
 }
