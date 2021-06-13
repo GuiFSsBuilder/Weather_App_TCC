@@ -1,4 +1,3 @@
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:weather_app_tcc/scenes/login/login_bindings.dart';
 import 'package:weather_app_tcc/scenes/scenes.dart';
@@ -20,7 +19,7 @@ List<GetPage> getPages() {
     ),
     GetPage(
       name: Routes.HOME,
-      page: () => const Text('Home page'),
+      page: () => Home(),
     ),
   ];
 }

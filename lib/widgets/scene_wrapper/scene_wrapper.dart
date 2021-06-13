@@ -8,22 +8,24 @@ class SceneWrapper extends StatelessWidget {
   final Widget? child;
   final bool showGoBack;
   final bool showLogo;
-  final void Function()? onPressSettings;
+  final bool showSettingsIcon;
 
   const SceneWrapper({
     this.child,
     this.showGoBack = false,
     this.showLogo = true,
-    this.onPressSettings,
+    this.showSettingsIcon = false,
   });
+
+  void onPressedSettings() {}
 
   @override
   Widget build(BuildContext context) {
     List<Widget> actions = [];
-    if (onPressSettings != null) {
+    if (showSettingsIcon) {
       actions = [
         IconButton(
-          onPressed: onPressSettings,
+          onPressed: onPressedSettings,
           icon: const Icon(Entypo.dots_three_horizontal),
         ),
         const SizedBox(width: 20),

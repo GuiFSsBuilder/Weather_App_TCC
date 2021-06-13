@@ -21,7 +21,7 @@ class Login extends GetView<LoginController> {
           const TextField(decoration: InputDecoration(labelText: 'Senha')),
           const SizedBox(height: 20),
           OutlinedButton(
-            onPressed: () {},
+            onPressed: () => Get.toNamed(Routes.HOME),
             child: const Text('Login'),
           ),
           const SizedBox(height: 10),
