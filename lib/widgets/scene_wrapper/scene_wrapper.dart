@@ -4,6 +4,8 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
 import 'package:weather_app_tcc/assets/svgs/svgs.dart';
 
+const backgroundImage = 'assets/images/background.png';
+
 class SceneWrapper extends StatelessWidget {
   final Widget? child;
   final bool showGoBack;
@@ -34,9 +36,11 @@ class SceneWrapper extends StatelessWidget {
       ];
     }
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
         title: showLogo ? const Logo() : null,
         centerTitle: true,
+        backgroundColor: Colors.transparent,
         leading: showGoBack
             ? IconButton(
                 onPressed: Get.back,
@@ -53,6 +57,10 @@ class SceneWrapper extends StatelessWidget {
         height: double.infinity,
         decoration: const BoxDecoration(
           color: Color(0xff62C4FB),
+          image: DecorationImage(
+            image: AssetImage(backgroundImage),
+            fit: BoxFit.cover,
+          ),
         ),
         child: SafeArea(
           child: Padding(

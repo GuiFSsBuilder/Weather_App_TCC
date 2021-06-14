@@ -39,7 +39,7 @@ class WeatherCard extends StatelessWidget {
       decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage(_assetName),
-          fit: BoxFit.cover,
+          fit: BoxFit.fill,
         ),
       ),
       child: Stack(
@@ -48,7 +48,7 @@ class WeatherCard extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
               color: Colors.black.withOpacity(0.4),
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(34),
             ),
           ),
           Padding(
