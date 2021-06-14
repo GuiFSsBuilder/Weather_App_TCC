@@ -6,11 +6,21 @@ ThemeData lightTheme() {
   const backgroundColor = Color(0xff171717);
   const disabledColor = Color(0xffACACAC);
   const textColor = Colors.white;
-  final textTheme = const TextTheme().apply(
-    bodyColor: textColor,
-    displayColor: textColor,
-    fontFamily: 'Roboto',
+  const defaultTextStyle = TextStyle(
+    fontWeight: FontWeight.bold,
   );
+  final textTheme = const TextTheme()
+      .apply(
+        bodyColor: textColor,
+        displayColor: textColor,
+        fontFamily: 'Roboto',
+      )
+      .copyWith(
+        headline1: defaultTextStyle.copyWith(fontSize: 64),
+        headline2: defaultTextStyle.copyWith(fontSize: 34),
+        bodyText1: defaultTextStyle.copyWith(fontSize: 18),
+        bodyText2: defaultTextStyle.copyWith(fontSize: 16),
+      );
   const primaryIconTheme = IconThemeData(
     color: textColor,
   );
