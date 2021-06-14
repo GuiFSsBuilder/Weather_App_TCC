@@ -9,12 +9,14 @@ class SceneWrapper extends StatelessWidget {
   final bool showGoBack;
   final bool showLogo;
   final bool showSettingsIcon;
+  final bool scrollable;
 
   const SceneWrapper({
     this.child,
     this.showGoBack = false,
     this.showLogo = true,
     this.showSettingsIcon = false,
+    this.scrollable = true,
   });
 
   void onPressedSettings() {}
@@ -55,7 +57,7 @@ class SceneWrapper extends StatelessWidget {
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25),
-            child: SingleChildScrollView(child: child),
+            child: scrollable ? SingleChildScrollView(child: child) : child,
           ),
         ),
       ),

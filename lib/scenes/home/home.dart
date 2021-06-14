@@ -8,11 +8,14 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return SceneWrapper(
       showSettingsIcon: true,
+      scrollable: false,
       child: Column(
-        children: const [
-          WeatherCard(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          const WeatherCard(
             weatherType: WeatherType.CLEAR,
           ),
+          WeatherWeekCard(),
         ],
       ),
     );
