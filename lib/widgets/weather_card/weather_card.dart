@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:weather_app_tcc/navigation/navigation.dart';
 import 'package:weather_app_tcc/utils/enums/enums.dart';
 
 class WeatherCard extends StatelessWidget {
@@ -91,30 +93,15 @@ class WeatherCard extends StatelessWidget {
             ),
           ),
           Positioned(
-            bottom: -30,
-            left: 110,
-            child: TextButton(
-              onPressed: () {},
-              style: ButtonStyle(
-                padding: MaterialStateProperty.resolveWith(
-                    (states) => const EdgeInsets.all(3)),
-                shape: MaterialStateProperty.resolveWith(
-                  (states) => RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                ),
-              ),
-              child: Container(
-                width: 60,
-                height: 60,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100),
-                  color: Colors.white,
-                ),
-                child: const Icon(
-                  Icons.add,
-                  color: Colors.black,
-                ),
+            bottom: -25,
+            left: 0,
+            right: 0,
+            child: FloatingActionButton(
+              onPressed: () => Get.toNamed(Routes.SEARCH_CITY),
+              backgroundColor: Colors.white,
+              child: const Icon(
+                Icons.add,
+                color: Colors.black,
               ),
             ),
           ),

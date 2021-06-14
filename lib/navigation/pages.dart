@@ -21,5 +21,9 @@ List<GetPage> getPages() {
       name: Routes.HOME,
       page: () => Home(),
     ),
+    GetPage(
+      name: Routes.SEARCH_CITY,
+      page: () => SearchCity(),
+    ),
   ];
 }

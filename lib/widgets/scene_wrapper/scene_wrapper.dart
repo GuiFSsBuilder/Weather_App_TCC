@@ -36,6 +36,7 @@ class SceneWrapper extends StatelessWidget {
       ];
     }
     return Scaffold(
+      resizeToAvoidBottomInset: scrollable,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         title: showLogo ? const Logo() : null,
