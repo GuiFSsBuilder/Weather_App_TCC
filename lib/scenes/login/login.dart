@@ -29,13 +29,16 @@ class Login extends GetView<LoginController> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CheckboxText(
-                value: false,
+                checked: false,
                 onChanged: (value) {},
                 text: 'Lembrar-me?',
               ),
               TextButton(
                 onPressed: () => Get.toNamed(Routes.SIGNUP),
-                child: const Text('Registrar-se'),
+                child: const Text(
+                  'Registrar-se',
+                  style: TextStyle(fontSize: 13),
+                ),
               )
             ],
           ),
