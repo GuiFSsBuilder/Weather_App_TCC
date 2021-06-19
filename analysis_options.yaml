@@ -6,6 +6,7 @@ linter:
     constant_identifier_names: false
     use_setters_to_change_properties: false
     non_constant_identifier_names: false
+    avoid_positional_boolean_parameters: false
 
 analyzer:
   exclude:

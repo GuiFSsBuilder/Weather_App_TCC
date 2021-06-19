@@ -11,7 +11,7 @@ class App extends StatelessWidget {
     return GetMaterialApp(
       title: 'Weather App',
       theme: lightTheme(),
-      initialRoute: Routes.LOGIN,
+      initialRoute: Routes.SPLASH_SCREEN,
       getPages: getPages(),
       initialBinding: InitialBindings(),
     );
