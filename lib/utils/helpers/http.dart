@@ -29,8 +29,8 @@ HttpResponse handleResponse(HttpResponse response) {
     );
   } else {
     String errorMessage = 'Erro';
-    if (resBody?['error'] is String) {
-      errorMessage = resBody?['error'] as String;
+    if (resBody['error'] is String) {
+      errorMessage = resBody['error'] as String;
     }
     throw HttpError(
       message: errorMessage,
