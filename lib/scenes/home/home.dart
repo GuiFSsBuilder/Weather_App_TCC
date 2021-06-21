@@ -1,9 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app_tcc/utils/enums/enums.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get/get.dart';
 import 'package:weather_app_tcc/widgets/scene_wrapper/scene_wrapper.dart';
 import 'package:weather_app_tcc/widgets/widgets.dart';
 
-class Home extends StatelessWidget {
+import 'home_controller.dart';
+
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  final HomeController _homeController = Get.find();
+
+  @override
+  void initState() {
+    super.initState();
+    _homeController.fetchWeatherList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SceneWrapper(
@@ -12,8 +28,14 @@ class Home extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          const WeatherCard(
-            weatherType: WeatherType.CLEAR,
+          Observer(
+            builder: (_) {
+              if (_homeController.weatherList.isNotEmpty) {
+                final userLocationWeather = _homeController.weatherList.first;
+                return WeatherCard(weatherData: userLocationWeather);
+              }
+              return Container();
+            },
           ),
           WeatherWeekCard(),
         ],

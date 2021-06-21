@@ -11,7 +11,7 @@ abstract class _UserStoreBase with Store {
   _UserStoreBase(this._location);
 
   @observable
-  late Coordinates userCoordinates;
+  Coordinates? userCoordinates;
 
   @action
   Future<void> fetchUserCoordinates() async {

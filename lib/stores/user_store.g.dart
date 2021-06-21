@@ -12,13 +12,13 @@ mixin _$UserStore on _UserStoreBase, Store {
   final _$userCoordinatesAtom = Atom(name: '_UserStoreBase.userCoordinates');
 
   @override
-  Coordinates get userCoordinates {
+  Coordinates? get userCoordinates {
     _$userCoordinatesAtom.reportRead();
     return super.userCoordinates;
   }
 
   @override
-  set userCoordinates(Coordinates value) {
+  set userCoordinates(Coordinates? value) {
     _$userCoordinatesAtom.reportWrite(value, super.userCoordinates, () {
       super.userCoordinates = value;
     });

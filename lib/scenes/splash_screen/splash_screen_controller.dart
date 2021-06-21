@@ -51,7 +51,9 @@ abstract class _SplashScreenControllerBase with Store {
       await checkPermission();
       await _userStore.fetchUserCoordinates();
       errorMessage = '';
-      if (serviceEnabled && permissionGranted) {
+      if (serviceEnabled &&
+          permissionGranted &&
+          _userStore.userCoordinates != null) {
         return Get.offAllNamed(Routes.HOME);
       }
       throw Failure(
