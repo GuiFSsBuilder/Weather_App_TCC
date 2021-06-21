@@ -1,8 +1,10 @@
 import 'package:get/get.dart';
-import 'package:mobx/mobx.dart';
 import 'package:location/location.dart';
+import 'package:mobx/mobx.dart';
 import 'package:weather_app_tcc/navigation/navigation.dart';
+import 'package:weather_app_tcc/stores/stores.dart';
 import 'package:weather_app_tcc/utils/entities/entities.dart';
+
 part 'splash_screen_controller.g.dart';
 
 class SplashScreenController = _SplashScreenControllerBase
@@ -10,8 +12,12 @@ class SplashScreenController = _SplashScreenControllerBase
 
 abstract class _SplashScreenControllerBase with Store {
   final Location _location;
+  final UserStore _userStore;
 
-  _SplashScreenControllerBase(this._location);
+  _SplashScreenControllerBase(
+    this._location,
+    this._userStore,
+  );
 
   @observable
   bool loading = true;
@@ -43,10 +49,14 @@ abstract class _SplashScreenControllerBase with Store {
     try {
       await checkServiceEnabled();
       await checkPermission();
+      await _userStore.fetchUserCoordinates();
       errorMessage = '';
       if (serviceEnabled && permissionGranted) {
-        Get.offAllNamed(Routes.HOME);
+        return Get.offAllNamed(Routes.HOME);
       }
+      throw Failure(
+        'Não foi possível buscar sua localização, por favor tente novamente!',
+      );
     } catch (e) {
       errorMessage = e.toString();
     } finally {
