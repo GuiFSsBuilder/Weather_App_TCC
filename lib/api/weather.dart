@@ -31,4 +31,25 @@ class WeatherApi {
       throw Failure(e.message);
     }
   }
+
+  Future<WeatherForecastModel> getWeatherForecastByCoordinates(
+      Coordinates coords) async {
+    try {
+      final response = await _httpClient.request(
+        url: '$baseUrl/onecall',
+        method: HttpMethod.get,
+        params: {
+          'appid': appId,
+          'lat': coords.lat,
+          'lon': coords.lng,
+          'lang': language,
+          'units': units,
+          'exclude': 'minutely,hourly,alerts,current'
+        },
+      );
+      return WeatherForecastModel.fromJson(response.body);
+    } on HttpError catch (e) {
+      throw Failure(e.message);
+    }
+  }
 }
