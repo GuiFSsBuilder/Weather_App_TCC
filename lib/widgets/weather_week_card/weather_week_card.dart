@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app_tcc/utils/entities/entities.dart';
 import 'package:weather_app_tcc/utils/enums/enums.dart';
 import 'weather_day_column.dart';
 
 class WeatherWeekCard extends StatelessWidget {
+  final WeatherForecastModel weatherForecast;
+
+  const WeatherWeekCard({
+    Key? key,
+    required this.weatherForecast,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,45 +23,17 @@ class WeatherWeekCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: const [
-          WeatherDayColumn(
-            weekDay: 'Seg',
-            temp: 25,
-            weatherType: WeatherType.SUNNY,
-          ),
-          WeatherDayColumn(
-            weekDay: 'Ter',
-            temp: 25,
-            weatherType: WeatherType.SUNNY,
-          ),
-          WeatherDayColumn(
-            weekDay: 'Qua',
-            temp: 25,
-            weatherType: WeatherType.SUNNY,
-          ),
-          WeatherDayColumn(
-            weekDay: 'Qui',
-            temp: 25,
-            weatherType: WeatherType.SUNNY,
-          ),
-          WeatherDayColumn(
-            weekDay: 'Sex',
-            temp: 25,
-            weatherType: WeatherType.SUNNY,
-          ),
-          WeatherDayColumn(
-            weekDay: 'Sab',
-            temp: 25,
-            weatherType: WeatherType.SUNNY,
-          ),
-          WeatherDayColumn(
-            weekDay: 'Dom',
-            temp: 25,
-            weatherType: WeatherType.SUNNY,
-          ),
-        ],
-      ),
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: weatherForecast.daily.map((dailyWeather) {
+            final tempMean =
+                (dailyWeather.temp.min + dailyWeather.temp.max) / 2.0;
+
+            return WeatherDayColumn(
+              weekDay: 'Dom',
+              temp: tempMean,
+              weatherType: WeatherType.SUNNY,
+            );
+          }).toList()),
     );
   }
 }

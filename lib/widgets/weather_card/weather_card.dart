@@ -74,7 +74,7 @@ class WeatherCard extends StatelessWidget {
                     const Text('Seg. 31 de maio 2021'),
                     const SizedBox(height: 10),
                     Text(
-                      '${weatherData.main.temp.toStringAsFixed(1)}º',
+                      '${weatherData.main.temp.toStringAsFixed(0)}º',
                       style: theme.textTheme.headline1,
                     ),
                   ],
@@ -85,14 +85,14 @@ class WeatherCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Text(
-                            'Min: ${weatherData.main.temp_min.toStringAsFixed(1)}º'),
+                            'Min: ${weatherData.main.temp_min.toStringAsFixed(0)}º'),
                         Text(
-                            'Max: ${weatherData.main.temp_max.toStringAsFixed(1)}º'),
+                            'Max: ${weatherData.main.temp_max.toStringAsFixed(0)}º'),
                       ],
                     ),
                     const SizedBox(height: 5),
                     Text(
-                        'Sensação térmica: ${weatherData.main.feels_like.toStringAsFixed(1)}º'),
+                        'Sensação térmica: ${weatherData.main.feels_like.toStringAsFixed(0)}º'),
                   ],
                 ),
               ],

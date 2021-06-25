@@ -37,7 +37,15 @@ class _HomeState extends State<Home> {
               return Container();
             },
           ),
-          WeatherWeekCard(),
+          Observer(builder: (_) {
+            final weatherForecast = _homeController.weatherForecast;
+            if (weatherForecast != null) {
+              return WeatherWeekCard(
+                weatherForecast: weatherForecast,
+              );
+            }
+            return Container();
+          }),
         ],
       ),
     );

@@ -36,7 +36,6 @@ class WeatherDayColumn extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           weekDay,
@@ -46,7 +45,7 @@ class WeatherDayColumn extends StatelessWidget {
           ),
         ),
         Text(
-          '$tempº',
+          '${temp.toStringAsFixed(0)}º',
           style: const TextStyle(
             fontSize: 17,
           ),

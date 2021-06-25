@@ -24,6 +24,22 @@ mixin _$HomeController on _HomeControllerBase, Store {
     });
   }
 
+  final _$weatherForecastAtom =
+      Atom(name: '_HomeControllerBase.weatherForecast');
+
+  @override
+  WeatherForecastModel? get weatherForecast {
+    _$weatherForecastAtom.reportRead();
+    return super.weatherForecast;
+  }
+
+  @override
+  set weatherForecast(WeatherForecastModel? value) {
+    _$weatherForecastAtom.reportWrite(value, super.weatherForecast, () {
+      super.weatherForecast = value;
+    });
+  }
+
   final _$loadingAtom = Atom(name: '_HomeControllerBase.loading');
 
   @override
@@ -80,6 +96,7 @@ mixin _$HomeController on _HomeControllerBase, Store {
   String toString() {
     return '''
 weatherList: ${weatherList},
+weatherForecast: ${weatherForecast},
 loading: ${loading},
 errorMessage: ${errorMessage}
     ''';
