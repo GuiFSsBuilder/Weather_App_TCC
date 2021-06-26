@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get/get.dart';
+import 'package:weather_app_tcc/utils/entities/entities.dart';
 import 'package:weather_app_tcc/widgets/scene_wrapper/scene_wrapper.dart';
 import 'package:weather_app_tcc/widgets/widgets.dart';
 
@@ -12,42 +13,46 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final HomeController _homeController = Get.find();
+  final HomeController controller = Get.find();
 
   @override
   void initState() {
     super.initState();
-    _homeController.fetchWeatherList();
+    controller.fetchWeatherList();
   }
 
   @override
   Widget build(BuildContext context) {
-    return SceneWrapper(
-      showSettingsIcon: true,
-      scrollable: false,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Observer(
-            builder: (_) {
-              if (_homeController.weatherList.isNotEmpty) {
-                final userLocationWeather = _homeController.weatherList.first;
-                return WeatherCard(weatherData: userLocationWeather);
-              }
-              return Container();
-            },
-          ),
-          Observer(builder: (_) {
-            final weatherForecast = _homeController.weatherForecast;
-            if (weatherForecast != null) {
-              return WeatherWeekCard(
-                weatherForecast: weatherForecast,
-              );
-            }
-            return Container();
-          }),
-        ],
-      ),
+    return Observer(
+      builder: (_) {
+        WeatherModel? userLocationWeather;
+        if (controller.weatherList.isNotEmpty) {
+          userLocationWeather = controller.weatherList.first;
+        }
+        final weatherForecast = controller.weatherForecast;
+
+        return SceneWrapper(
+          showSettingsIcon: true,
+          scrollable: false,
+          child: controller.loading
+              ? const Center(child: Loader())
+              : Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    if (userLocationWeather != null)
+                      WeatherCard(weatherData: userLocationWeather)
+                    else
+                      Container(),
+                    if (weatherForecast != null)
+                      WeatherWeekCard(
+                        weatherForecast: weatherForecast,
+                      )
+                    else
+                      Container()
+                  ],
+                ),
+        );
+      },
     );
   }
 }

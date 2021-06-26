@@ -28,9 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Observer(
           builder: (_) {
             return controller.loading
-                ? const CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation(Colors.white),
-                  )
+                ? const Loader()
                 : Text(
                     controller.errorMessage,
                     style: theme.textTheme.headline2,
