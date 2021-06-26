@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:weather_app_tcc/utils/entities/entities.dart';
-import 'package:weather_app_tcc/utils/enums/enums.dart';
+import 'package:weather_app_tcc/utils/extensions/extensions.dart';
+
 import 'weather_day_column.dart';
 
 class WeatherWeekCard extends StatelessWidget {
   final WeatherForecastModel weatherForecast;
+  final df = DateFormat.E();
 
-  const WeatherWeekCard({
+  WeatherWeekCard({
     Key? key,
     required this.weatherForecast,
   }) : super(key: key);
@@ -28,10 +31,15 @@ class WeatherWeekCard extends StatelessWidget {
             final tempMean =
                 (dailyWeather.temp.min + dailyWeather.temp.max) / 2.0;
 
+            final weekDay = df.format(
+                DateTime.fromMillisecondsSinceEpoch(dailyWeather.dt * 1000));
+
+            final iconName = dailyWeather.weather.first.icon;
+
             return WeatherDayColumn(
-              weekDay: 'Dom',
+              weekDay: weekDay.captalize(),
               temp: tempMean,
-              weatherType: WeatherType.SUNNY,
+              iconName: iconName,
             );
           }).toList()),
     );

@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:weather_app_tcc/navigation/navigation.dart';
 import 'package:weather_app_tcc/utils/entities/entities.dart';
+import 'package:weather_app_tcc/utils/extensions/extensions.dart';
 
 class WeatherCard extends StatelessWidget {
   final WeatherModel weatherData;
+  final df1 = DateFormat.E();
+  final df2 = DateFormat.yMMMMd();
+  // sab. 31 de maio de 2021
 
-  const WeatherCard({
+  WeatherCard({
     Key? key,
     required this.weatherData,
   }) : super(key: key);
@@ -38,6 +43,7 @@ class WeatherCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final date = '${df1.format(DateTime.now())}, ${df2.format(DateTime.now())}';
     return Container(
       width: 284,
       height: 431,
@@ -71,7 +77,7 @@ class WeatherCard extends StatelessWidget {
                       style: theme.textTheme.headline2,
                     ),
                     const SizedBox(height: 5),
-                    const Text('Seg. 31 de maio 2021'),
+                    Text(date.captalize()),
                     const SizedBox(height: 10),
                     Text(
                       '${weatherData.main.temp.toStringAsFixed(0)}º',

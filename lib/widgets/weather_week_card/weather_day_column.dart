@@ -1,35 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:weather_app_tcc/utils/enums/enums.dart';
 
 class WeatherDayColumn extends StatelessWidget {
   final String weekDay;
   final double temp;
-  final WeatherType weatherType;
+  final String iconName;
 
   const WeatherDayColumn({
     Key? key,
     required this.weekDay,
     required this.temp,
-    required this.weatherType,
+    required this.iconName,
   }) : super(key: key);
 
-  String get _assetName {
-    String type = '';
-    switch (weatherType) {
-      case WeatherType.SUNNY:
-        type = 'sunny';
-        break;
-      case WeatherType.CLOUDY:
-        type = 'sunny_storm';
-        break;
-      case WeatherType.CLEAR:
-        type = 'sunny_cloud';
-        break;
-      default:
-        type = 'sunny';
-    }
-    return 'assets/svgs/weather_$type.svg';
+  String get _iconSrc {
+    return 'http://openweathermap.org/img/wn/$iconName@2x.png';
   }
 
   @override
@@ -50,8 +34,10 @@ class WeatherDayColumn extends StatelessWidget {
             fontSize: 17,
           ),
         ),
-        SvgPicture.asset(
-          _assetName,
+        Image.network(
+          _iconSrc,
+          width: 32,
+          height: 32,
         )
       ],
     );
