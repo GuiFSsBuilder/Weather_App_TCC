@@ -38,8 +38,10 @@ abstract class _HomeControllerBase with Store {
       if (userCoords == null) throw Failure('Localização não encontrada');
       final userLocationWeather =
           await _weatherApi.getWeatherByCoordinates(userCoords);
-      weatherForecast =
+      final forecast =
           await _weatherApi.getWeatherForecastByCoordinates(userCoords);
+      forecast.daily.removeRange(0, 1);
+      weatherForecast = forecast;
       weatherList = [userLocationWeather];
     } on Failure catch (e) {
       errorMessage = e.message;
