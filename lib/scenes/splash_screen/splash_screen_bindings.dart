@@ -5,7 +5,7 @@ class SplashScreenBindings implements Bindings {
   @override
   void dependencies() {
     Get.put(
-      SplashScreenController(Get.find(), Get.find()),
+      SplashScreenController(Get.find()),
     );
   }
 }

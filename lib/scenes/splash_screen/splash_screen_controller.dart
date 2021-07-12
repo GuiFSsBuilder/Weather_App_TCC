@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:location/location.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:mobx/mobx.dart';
 import 'package:weather_app_tcc/navigation/navigation.dart';
 import 'package:weather_app_tcc/stores/stores.dart';
@@ -11,13 +11,9 @@ class SplashScreenController = _SplashScreenControllerBase
     with _$SplashScreenController;
 
 abstract class _SplashScreenControllerBase with Store {
-  final Location _location;
   final UserStore _userStore;
 
-  _SplashScreenControllerBase(
-    this._location,
-    this._userStore,
-  );
+  _SplashScreenControllerBase(this._userStore);
 
   @observable
   bool loading = true;
@@ -34,14 +30,14 @@ abstract class _SplashScreenControllerBase with Store {
   void setServiceEnabled(bool value) => serviceEnabled = value;
 
   @observable
-  PermissionStatus permission = PermissionStatus.denied;
+  LocationPermission permission = LocationPermission.denied;
   @action
-  void setPermission(PermissionStatus value) => permission = value;
+  void setPermission(LocationPermission value) => permission = value;
 
   @computed
   bool get permissionGranted =>
-      permission == PermissionStatus.granted ||
-      permission == PermissionStatus.grantedLimited;
+      permission == LocationPermission.always ||
+      permission == LocationPermission.whileInUse;
 
   @action
   Future<void> checkInitialPermissions() async {
@@ -68,12 +64,15 @@ abstract class _SplashScreenControllerBase with Store {
 
   @action
   Future<void> checkPermission() async {
-    permission = await _location.hasPermission();
-    if (permission == PermissionStatus.denied ||
-        permission == PermissionStatus.deniedForever) {
-      permission = await _location.requestPermission();
-      if (permission == PermissionStatus.denied ||
-          permission == PermissionStatus.deniedForever) {
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.deniedForever) {
+      throw Failure(
+          'A localização foi negada para sempre, não conseguimos requisitar sua localização');
+    }
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied ||
+          permission == LocationPermission.deniedForever) {
         throw Failure('Você precisa permitir a localização para continuar!');
       }
     }
@@ -81,13 +80,10 @@ abstract class _SplashScreenControllerBase with Store {
 
   @action
   Future<void> checkServiceEnabled() async {
-    serviceEnabled = await _location.serviceEnabled();
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      serviceEnabled = await _location.requestService();
-      if (!serviceEnabled) {
-        throw Failure(
-            'Você precisa habilitar o serviço de localização para continuar!');
-      }
+      throw Failure(
+          'Você precisa habilitar o serviço de localização para continuar!');
     }
   }
 }

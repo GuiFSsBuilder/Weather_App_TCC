@@ -67,13 +67,13 @@ mixin _$SplashScreenController on _SplashScreenControllerBase, Store {
   final _$permissionAtom = Atom(name: '_SplashScreenControllerBase.permission');
 
   @override
-  PermissionStatus get permission {
+  LocationPermission get permission {
     _$permissionAtom.reportRead();
     return super.permission;
   }
 
   @override
-  set permission(PermissionStatus value) {
+  set permission(LocationPermission value) {
     _$permissionAtom.reportWrite(value, super.permission, () {
       super.permission = value;
     });
@@ -131,7 +131,7 @@ mixin _$SplashScreenController on _SplashScreenControllerBase, Store {
   }
 
   @override
-  void setPermission(PermissionStatus value) {
+  void setPermission(LocationPermission value) {
     final _$actionInfo = _$_SplashScreenControllerBaseActionController
         .startAction(name: '_SplashScreenControllerBase.setPermission');
     try {
