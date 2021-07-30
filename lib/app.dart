@@ -14,6 +14,7 @@ class App extends StatelessWidget {
       initialRoute: Routes.SPLASH_SCREEN,
       getPages: getPages(),
       initialBinding: InitialBindings(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

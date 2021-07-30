@@ -39,6 +39,7 @@ class SceneWrapper extends StatelessWidget {
       resizeToAvoidBottomInset: scrollable,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
+        brightness: Brightness.dark,
         title: showLogo ? const Logo() : null,
         centerTitle: true,
         backgroundColor: Colors.transparent,
