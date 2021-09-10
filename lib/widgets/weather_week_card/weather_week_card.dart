@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:weather_app_tcc/utils/entities/entities.dart';
 import 'package:weather_app_tcc/utils/extensions/extensions.dart';
 
-import 'weather_day_column.dart';
+import 'widgets/weather_day_column.dart';
 
 class WeatherWeekCard extends StatelessWidget {
   final WeatherForecastModel weatherForecast;
