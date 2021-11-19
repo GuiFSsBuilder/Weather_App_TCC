@@ -1,5 +1,5 @@
-import 'package:get/get.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:get/get.dart';
 import 'package:mobx/mobx.dart';
 import 'package:weather_app_tcc/navigation/navigation.dart';
 import 'package:weather_app_tcc/stores/stores.dart';

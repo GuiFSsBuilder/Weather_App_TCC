@@ -45,7 +45,6 @@ ThemeData lightTheme() {
     fillColor: Colors.white,
   );
   const iconTheme = IconThemeData(color: Colors.white);
-  const accentIconTheme = IconThemeData(color: Color(0xff979797));
   final textButtonTheme = TextButtonThemeData(
     style: TextButton.styleFrom(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(3)),
@@ -88,7 +87,6 @@ ThemeData lightTheme() {
     bottomAppBarColor: secondaryColor,
     inputDecorationTheme: inputDecorationTheme,
     elevatedButtonTheme: elevatedButtonTheme,
-    accentIconTheme: accentIconTheme,
     iconTheme: iconTheme,
     textButtonTheme: textButtonTheme,
     outlinedButtonTheme: outlinedButtonTheme,

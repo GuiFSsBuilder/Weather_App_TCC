@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:get/get.dart';
@@ -39,7 +40,10 @@ class SceneWrapper extends StatelessWidget {
       resizeToAvoidBottomInset: scrollable,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
-        brightness: Brightness.dark,
+        systemOverlayStyle: const SystemUiOverlayStyle(
+          statusBarColor: Colors.transparent, // Status bar
+          statusBarIconBrightness: Brightness.light,
+        ),
         title: showLogo ? const Logo() : null,
         centerTitle: true,
         backgroundColor: Colors.transparent,

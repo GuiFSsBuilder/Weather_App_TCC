@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:weather_app_tcc/utils/entities/http_error.dart';
-import 'package:weather_app_tcc/utils/enums/http.dart';
 import 'package:weather_app_tcc/utils/entities/http_response.dart';
+import 'package:weather_app_tcc/utils/enums/http.dart';
 import 'package:weather_app_tcc/utils/helpers/helpers.dart';
 import 'package:weather_app_tcc/utils/interfaces/interfaces.dart';
 import 'package:weather_app_tcc/utils/types/types.dart';

@@ -44,68 +44,75 @@ class WeatherCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final date = '${df1.format(DateTime.now())}, ${df2.format(DateTime.now())}';
-    return Container(
-      width: 284,
-      height: 431,
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(_assetName),
-          fit: BoxFit.fill,
-        ),
-      ),
+    return SizedBox(
+      height: 451,
       child: Stack(
-        clipBehavior: Clip.none,
         children: [
           Container(
+            width: 284,
+            height: 431,
             decoration: BoxDecoration(
-              color: Colors.black.withOpacity(0.4),
-              borderRadius: BorderRadius.circular(34),
+              image: DecorationImage(
+                image: AssetImage(_assetName),
+                fit: BoxFit.fill,
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 40,
-              horizontal: 20,
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            child: Stack(
+              clipBehavior: Clip.none,
               children: [
-                Column(
-                  children: [
-                    Text(
-                      weatherData.name,
-                      style: theme.textTheme.headline2,
-                    ),
-                    const SizedBox(height: 5),
-                    Text(date.captalize()),
-                    const SizedBox(height: 10),
-                    Text(
-                      '${weatherData.main.temp.toStringAsFixed(0)}º',
-                      style: theme.textTheme.headline1,
-                    ),
-                  ],
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.black.withOpacity(0.4),
+                    borderRadius: BorderRadius.circular(34),
+                  ),
                 ),
-                Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Text(
-                            'Min: ${weatherData.main.temp_min.toStringAsFixed(0)}º'),
-                        Text(
-                            'Max: ${weatherData.main.temp_max.toStringAsFixed(0)}º'),
-                      ],
-                    ),
-                    const SizedBox(height: 5),
-                    Text(
-                        'Sensação térmica: ${weatherData.main.feels_like.toStringAsFixed(0)}º'),
-                  ],
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 40,
+                    horizontal: 20,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        children: [
+                          Text(
+                            weatherData.name,
+                            style: theme.textTheme.headline2,
+                          ),
+                          const SizedBox(height: 5),
+                          Text(date.captalize()),
+                          const SizedBox(height: 10),
+                          Text(
+                            '${weatherData.main.temp.toStringAsFixed(0)}º',
+                            style: theme.textTheme.headline1,
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text(
+                                  'Min: ${weatherData.main.temp_min.toStringAsFixed(0)}º'),
+                              Text(
+                                  'Max: ${weatherData.main.temp_max.toStringAsFixed(0)}º'),
+                            ],
+                          ),
+                          const SizedBox(height: 5),
+                          Text(
+                              'Sensação térmica: ${weatherData.main.feels_like.toStringAsFixed(0)}º'),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
           ),
           Positioned(
-            bottom: -25,
+            bottom: 0,
             left: 0,
             right: 0,
             child: FloatingActionButton(

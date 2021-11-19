@@ -15,6 +15,7 @@ class App extends StatelessWidget {
       getPages: getPages(),
       initialBinding: InitialBindings(),
       debugShowCheckedModeBanner: false,
+      themeMode: ThemeMode.light,
     );
   }
 }
