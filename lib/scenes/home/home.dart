@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get/get.dart';
-import 'package:weather_app_tcc/utils/entities/entities.dart';
 import 'package:weather_app_tcc/widgets/scene_wrapper/scene_wrapper.dart';
 import 'package:weather_app_tcc/widgets/widgets.dart';
 
@@ -18,21 +17,18 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
-    controller.fetchWeatherList();
+    controller.fetchWeather();
   }
 
   @override
   Widget build(BuildContext context) {
     return Observer(
       builder: (_) {
-        WeatherModel? userLocationWeather;
-        if (controller.weatherList.isNotEmpty) {
-          userLocationWeather = controller.weatherList.first;
-        }
+        final userLocationWeather = controller.currentWeather;
         final weatherForecast = controller.weatherForecast;
 
         return SceneWrapper(
-          showSettingsIcon: true,
+          onSearchSubmitted: controller.searchWeatherByCity,
           scrollable: false,
           child: controller.loading
               ? const Center(child: Loader())

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:weather_app_tcc/navigation/navigation.dart';
 import 'package:weather_app_tcc/utils/entities/entities.dart';
 import 'package:weather_app_tcc/utils/extensions/extensions.dart';
 
@@ -44,84 +42,64 @@ class WeatherCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final date = '${df1.format(DateTime.now())}, ${df2.format(DateTime.now())}';
-    return SizedBox(
-      height: 451,
+    return Container(
+      width: 284,
+      height: 431,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(_assetName),
+          fit: BoxFit.fill,
+        ),
+      ),
       child: Stack(
+        clipBehavior: Clip.none,
         children: [
           Container(
-            width: 284,
-            height: 431,
             decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(_assetName),
-                fit: BoxFit.fill,
-              ),
-            ),
-            child: Stack(
-              clipBehavior: Clip.none,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.4),
-                    borderRadius: BorderRadius.circular(34),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 40,
-                    horizontal: 20,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        children: [
-                          Text(
-                            weatherData.name,
-                            style: theme.textTheme.headline2,
-                          ),
-                          const SizedBox(height: 5),
-                          Text(date.captalize()),
-                          const SizedBox(height: 10),
-                          Text(
-                            '${weatherData.main.temp.toStringAsFixed(0)}º',
-                            style: theme.textTheme.headline1,
-                          ),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Text(
-                                  'Min: ${weatherData.main.temp_min.toStringAsFixed(0)}º'),
-                              Text(
-                                  'Max: ${weatherData.main.temp_max.toStringAsFixed(0)}º'),
-                            ],
-                          ),
-                          const SizedBox(height: 5),
-                          Text(
-                              'Sensação térmica: ${weatherData.main.feels_like.toStringAsFixed(0)}º'),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+              color: Colors.black.withOpacity(0.4),
+              borderRadius: BorderRadius.circular(34),
             ),
           ),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: FloatingActionButton(
-              onPressed: () => Get.toNamed(Routes.SEARCH_CITY),
-              backgroundColor: Colors.white,
-              child: const Icon(
-                Icons.add,
-                color: Colors.black,
-              ),
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              vertical: 40,
+              horizontal: 20,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  children: [
+                    Text(
+                      weatherData.name,
+                      style: theme.textTheme.headline2,
+                    ),
+                    const SizedBox(height: 5),
+                    Text(date.captalize()),
+                    const SizedBox(height: 10),
+                    Text(
+                      '${weatherData.main.temp.toStringAsFixed(0)}º',
+                      style: theme.textTheme.headline1,
+                    ),
+                  ],
+                ),
+                Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(
+                            'Min: ${weatherData.main.temp_min.toStringAsFixed(0)}º'),
+                        Text(
+                            'Max: ${weatherData.main.temp_max.toStringAsFixed(0)}º'),
+                      ],
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                        'Sensação térmica: ${weatherData.main.feels_like.toStringAsFixed(0)}º'),
+                  ],
+                ),
+              ],
             ),
           ),
         ],

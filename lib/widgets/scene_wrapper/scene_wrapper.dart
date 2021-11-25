@@ -7,47 +7,109 @@ import 'package:weather_app_tcc/assets/svgs/svgs.dart';
 
 const backgroundImage = 'assets/images/background.png';
 
-class SceneWrapper extends StatelessWidget {
+class SceneWrapper extends StatefulWidget {
   final Widget? child;
   final bool showGoBack;
   final bool showLogo;
-  final bool showSettingsIcon;
   final bool scrollable;
+  final void Function(String text)? onSearchSubmitted;
 
   const SceneWrapper({
+    Key? key,
     this.child,
     this.showGoBack = false,
     this.showLogo = true,
-    this.showSettingsIcon = false,
     this.scrollable = true,
-  });
+    this.onSearchSubmitted,
+  }) : super(key: key);
 
-  void onPressedSettings() {}
+  @override
+  State<SceneWrapper> createState() => _SceneWrapperState();
+}
+
+class _SceneWrapperState extends State<SceneWrapper> {
+  bool _showSearchInput = false;
+
+  void onPressedSearch() {
+    setState(() {
+      _showSearchInput = true;
+    });
+  }
+
+  void onPressedCloseSearch() {
+    setState(() {
+      _showSearchInput = false;
+    });
+  }
+
+  Widget? get appBarCenterWidget {
+    if (_showSearchInput) {
+      final outlineInputBorder = OutlineInputBorder(
+        borderRadius: BorderRadius.circular(20),
+        borderSide: const BorderSide(color: Colors.transparent),
+      );
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: TextFormField(
+          onFieldSubmitted: widget.onSearchSubmitted,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          autofocus: true,
+          textInputAction: TextInputAction.search,
+          decoration: InputDecoration(
+            fillColor: Colors.black.withOpacity(0.2),
+            filled: true,
+            contentPadding: EdgeInsets.zero,
+            enabledBorder: outlineInputBorder,
+            focusedBorder: outlineInputBorder,
+            errorBorder: outlineInputBorder,
+            border: outlineInputBorder,
+            hintText: 'Buscar clima por cidade',
+            hintStyle: TextStyle(color: Colors.grey.shade400),
+            prefixIcon: const Icon(
+              Icons.search,
+              color: Colors.white,
+            ),
+            suffixIcon: IconButton(
+              splashRadius: 18,
+              onPressed: onPressedCloseSearch,
+              icon: const Icon(
+                Icons.close,
+                color: Colors.grey,
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+    return widget.showLogo ? const Logo() : null;
+  }
 
   @override
   Widget build(BuildContext context) {
     List<Widget> actions = [];
-    if (showSettingsIcon) {
+    if (!_showSearchInput) {
       actions = [
         IconButton(
-          onPressed: onPressedSettings,
-          icon: const Icon(Entypo.dots_three_horizontal),
+          onPressed: onPressedSearch,
+          icon: const Icon(Icons.search),
+          splashRadius: 20,
         ),
         const SizedBox(width: 20),
       ];
     }
+
     return Scaffold(
-      resizeToAvoidBottomInset: scrollable,
+      resizeToAvoidBottomInset: widget.scrollable,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         systemOverlayStyle: const SystemUiOverlayStyle(
           statusBarColor: Colors.transparent, // Status bar
           statusBarIconBrightness: Brightness.light,
         ),
-        title: showLogo ? const Logo() : null,
+        title: appBarCenterWidget,
         centerTitle: true,
         backgroundColor: Colors.transparent,
-        leading: showGoBack
+        leading: widget.showGoBack
             ? IconButton(
                 onPressed: Get.back,
                 icon: const Icon(AntDesign.arrowleft),
@@ -71,7 +133,9 @@ class SceneWrapper extends StatelessWidget {
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25),
-            child: scrollable ? SingleChildScrollView(child: child) : child,
+            child: widget.scrollable
+                ? SingleChildScrollView(child: widget.child)
+                : widget.child,
           ),
         ),
       ),

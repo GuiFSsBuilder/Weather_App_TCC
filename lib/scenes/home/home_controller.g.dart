@@ -9,18 +9,18 @@ part of 'home_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$HomeController on _HomeControllerBase, Store {
-  final _$weatherListAtom = Atom(name: '_HomeControllerBase.weatherList');
+  final _$currentWeatherAtom = Atom(name: '_HomeControllerBase.currentWeather');
 
   @override
-  List<WeatherModel> get weatherList {
-    _$weatherListAtom.reportRead();
-    return super.weatherList;
+  WeatherModel? get currentWeather {
+    _$currentWeatherAtom.reportRead();
+    return super.currentWeather;
   }
 
   @override
-  set weatherList(List<WeatherModel> value) {
-    _$weatherListAtom.reportWrite(value, super.weatherList, () {
-      super.weatherList = value;
+  set currentWeather(WeatherModel? value) {
+    _$currentWeatherAtom.reportWrite(value, super.currentWeather, () {
+      super.currentWeather = value;
     });
   }
 
@@ -55,27 +55,21 @@ mixin _$HomeController on _HomeControllerBase, Store {
     });
   }
 
-  final _$errorMessageAtom = Atom(name: '_HomeControllerBase.errorMessage');
+  final _$fetchWeatherAsyncAction =
+      AsyncAction('_HomeControllerBase.fetchWeather');
 
   @override
-  String get errorMessage {
-    _$errorMessageAtom.reportRead();
-    return super.errorMessage;
+  Future<void> fetchWeather() {
+    return _$fetchWeatherAsyncAction.run(() => super.fetchWeather());
   }
 
-  @override
-  set errorMessage(String value) {
-    _$errorMessageAtom.reportWrite(value, super.errorMessage, () {
-      super.errorMessage = value;
-    });
-  }
-
-  final _$fetchWeatherListAsyncAction =
-      AsyncAction('_HomeControllerBase.fetchWeatherList');
+  final _$searchWeatherByCityAsyncAction =
+      AsyncAction('_HomeControllerBase.searchWeatherByCity');
 
   @override
-  Future<void> fetchWeatherList() {
-    return _$fetchWeatherListAsyncAction.run(() => super.fetchWeatherList());
+  Future<void> searchWeatherByCity(String city) {
+    return _$searchWeatherByCityAsyncAction
+        .run(() => super.searchWeatherByCity(city));
   }
 
   final _$_HomeControllerBaseActionController =
@@ -95,10 +89,9 @@ mixin _$HomeController on _HomeControllerBase, Store {
   @override
   String toString() {
     return '''
-weatherList: ${weatherList},
+currentWeather: ${currentWeather},
 weatherForecast: ${weatherForecast},
-loading: ${loading},
-errorMessage: ${errorMessage}
+loading: ${loading}
     ''';
   }
 }

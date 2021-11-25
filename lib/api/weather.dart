@@ -52,4 +52,29 @@ class WeatherApi {
       throw Failure(e.message);
     }
   }
+
+  Future<WeatherModel> getWeatherByCity(
+    String city,
+  ) async {
+    try {
+      final response = await _httpClient.request(
+        url: '$baseUrl/weather',
+        method: HttpMethod.get,
+        params: {
+          'q': city,
+          'units': units,
+          'appid': appId,
+          'lang': language,
+        },
+      );
+      return WeatherModel.fromJson(response.body);
+    } on HttpError catch (e) {
+      if (e.statusCode == 404) {
+        throw Failure('Cidade não encontrada');
+      }
+      throw Failure(e.message);
+    } catch (e) {
+      throw Failure(e.toString());
+    }
+  }
 }

@@ -34,6 +34,11 @@ class HttpClient implements IHttpClient {
         statusCode: response.statusCode ?? 400,
         body: response.data as Json,
       ));
+    } on DioError catch (e) {
+      throw HttpError(
+        message: e.message,
+        statusCode: e.response?.statusCode ?? 500,
+      );
     } catch (e) {
       throw HttpError(
         message: e.toString(),
