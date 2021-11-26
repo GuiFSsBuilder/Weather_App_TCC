@@ -63,6 +63,15 @@ mixin _$HomeController on _HomeControllerBase, Store {
     return _$fetchWeatherAsyncAction.run(() => super.fetchWeather());
   }
 
+  final _$_getWeatherForecastAsyncAction =
+      AsyncAction('_HomeControllerBase._getWeatherForecast');
+
+  @override
+  Future<void> _getWeatherForecast(Coordinates coordinates) {
+    return _$_getWeatherForecastAsyncAction
+        .run(() => super._getWeatherForecast(coordinates));
+  }
+
   final _$searchWeatherByCityAsyncAction =
       AsyncAction('_HomeControllerBase.searchWeatherByCity');
 

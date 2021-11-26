@@ -104,7 +104,7 @@ class _SceneWrapperState extends State<SceneWrapper> {
       appBar: AppBar(
         systemOverlayStyle: const SystemUiOverlayStyle(
           statusBarColor: Colors.transparent, // Status bar
-          statusBarIconBrightness: Brightness.light,
+          statusBarIconBrightness: Brightness.dark,
         ),
         title: appBarCenterWidget,
         centerTitle: true,
